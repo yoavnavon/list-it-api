@@ -13,7 +13,7 @@ use mongodb::bson::oid::ObjectId;
 #[post("/list")]
 pub async fn create_list(db: Data<MongoRepo>, new_list: Json<List>) -> HttpResponse {
     let data = List {
-        id: None,
+        _id: None,
         name: new_list.name.to_owned(),
         description: new_list.description.to_owned(),
         items: new_list.items.to_owned(),
@@ -49,7 +49,7 @@ pub async fn update_list(
         return HttpResponse::BadRequest().body("invalid ID");
     };
     let data = List {
-        id: Some(ObjectId::parse_str(&id).unwrap()),
+        _id: Some(ObjectId::parse_str(&id).unwrap()),
         name: new_list.name.to_owned(),
         description: new_list.description.to_owned(),
         items: new_list.items.to_owned(),

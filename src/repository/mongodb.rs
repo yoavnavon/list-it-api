@@ -31,7 +31,7 @@ impl MongoRepo {
 
     pub async fn create_user(&self, new_user: User) -> Result<InsertOneResult, Error> {
         let new_doc = User {
-            id: None,
+            _id: None,
             name: new_user.name,
             location: new_user.location,
             title: new_user.title,
@@ -47,7 +47,7 @@ impl MongoRepo {
 
     pub async fn create_list(&self, new_list: List) -> Result<InsertOneResult, Error> {
         let new_doc = List {
-            id: None,
+            _id: None,
             name: new_list.name,
             description: new_list.description,
             items: new_list.items,
@@ -91,7 +91,6 @@ impl MongoRepo {
         let new_doc = doc! {
             "$set":
                 {
-                    "id": new_user.id,
                     "name": new_user.name,
                     "location": new_user.location,
                     "title": new_user.title,
@@ -111,7 +110,6 @@ impl MongoRepo {
         let new_doc = doc! {
             "$set":
                 {
-                    "id": new_list.id,
                     "name": new_list.name,
                     "description": new_list.description,
                     "items": to_bson(&new_list.items).unwrap()
