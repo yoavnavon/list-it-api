@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct ListItem {
     pub text: String,
+    pub item_type: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
